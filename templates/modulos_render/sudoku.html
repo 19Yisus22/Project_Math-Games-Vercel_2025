@@ -1,64 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sudoku | MathGames</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
-<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/uploads/icon.png') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku | MathGames</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/uploads/icon.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 
 <body class="bg-dark-purple">
 
 {% include 'global_html/navbar.html' %}
 
-<div class="container d-flex justify-content-center align-items-start my-5">
-  <div class="sudoku-card p-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4 class="mb-0 text-dark">Sudoku</h4>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="toggleDark" />
-        <label class="form-check-label" for="toggleDark">Modo oscuro</label>
-      </div>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="sudoku-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0"><i class="bi bi-grid-3x3"></i> Sudoku Pro</h4>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="toggleDark">
+                        <label class="form-check-label small text-muted" for="toggleDark">Modo Oscuro</label>
+                    </div>
+                </div>
+
+                <div class="control-section mb-3">
+                    <label class="section-title">Dificultad</label>
+                    <div class="btn-group w-100" role="group">
+                        <button class="btn btn-outline-primary btn-sm" id="btnEasy">Fácil</button>
+                        <button class="btn btn-outline-warning btn-sm" id="btnMedium">Medio</button>
+                        <button class="btn btn-outline-danger btn-sm" id="btnHard">Difícil</button>
+                    </div>
+                </div>
+
+                <div class="metrics-card mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="text-center">
+                                <span class="d-block small text-muted text-uppercase x-small">Tiempo</span>
+                                <span id="timerText" class="fw-bold font-monospace">00:00.000</span>
+                            </div>
+                            <div class="vr"></div>
+                            <div class="text-center">
+                                <span class="d-block small text-muted text-uppercase x-small">Score</span>
+                                <span id="scoreText" class="fw-bold text-success">0</span>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-success btn-sm" id="btnCheck" title="Verificar"><i class="bi bi-check2-circle"></i></button>
+                            <button class="btn btn-secondary btn-sm" id="btnReset" title="Reiniciar"><i class="bi bi-arrow-clockwise"></i></button>
+                            <button class="btn btn-warning btn-sm" id="btnHelpFill" title="Ayuda"><i class="bi bi-lightbulb"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="board-container">
+                    <div id="board" class="board"></div>
+                </div>
+
+                <div class="mt-4">
+                    <button class="btn btn-light btn-sm w-100 border" id="btnShowCandidates">
+                        <i class="bi bi-eye"></i> Mostrar Candidatos
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-
-<div class="mb-3">
-  <label class="form-label fw-bold">Seleccionar dificultad</label>
-  <div class="btn-group w-100" role="group">
-    <button class="btn btn-outline-primary" id="btnEasy">Fácil</button>
-    <button class="btn btn-outline-warning" id="btnMedium">Medio</button>
-    <button class="btn btn-outline-danger" id="btnHard">Difícil</button>
-  </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-center mb-2">
-  <div>
-    <span id="timerText">00:00.000</span>
-    <span class="mx-2">|</span>
-    <span id="scoreText">Puntuación: 0</span>
-  </div>
-  <div>
-    <button class="btn btn-success me-1" id="btnCheck">Verificar</button>
-  </div>
-  <div>
-    <button class="btn btn-secondary me-1" id="btnReset">Reiniciar</button>
-  </div>
-  <div>
-    <button class="btn btn-warning me-1" id="btnHelpFill">Ayuda</button>
-  </div>
-</div>
-
-<div id="board" class="board"></div>
-
-<div class="mt-3 d-flex gap-2">
-  <button class="btn btn-sm btn-light w-100" id="btnShowCandidates">Mostrar Candidatos</button>
-</div>
-
-<div id="toastContainer" class="position-fixed p-3 top-0 end-0" style="z-index:2000;"></div>
-  </div>
-</div>
+<div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
 {% include 'global_html/footer.html' %}
 

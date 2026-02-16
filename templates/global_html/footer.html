@@ -1,23 +1,46 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style_footer.css') }}">
-<div class="footer-container mt-auto bg-dark text-light">
-  <footer class="footer py-4">
-    <div class="container d-flex flex-column flex-md-row flex-wrap justify-content-between align-items-start">
-      
-      <div class="footer-section mb-3 mb-md-0">
-        <h5 class="mb-3">Developed By:</h5>
-        <div class="mb-1"><i class="bi bi-person-fill me-2"></i>Nombre: Jesús Gabriel Rodríguez Rubio</div>
-        <div class="mb-1"><i class="bi bi-cpu-fill me-2"></i>Ing. Sistemas</div>
-        <div class="mb-1"><i class="bi bi-geo-alt-fill me-2"></i>Universidad: Simón Bolívar - Cúcuta 2025</div>
-      </div>
+<div class="footer-container mt-auto bg-dark text-light border-top border-secondary">
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                
+                <div class="col-md-6 text-start">
+                    <div class="footer-section">
+                        <h6 class="text-uppercase fw-bold mb-3 text-secondary">Desarrollado por:</h6>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="small">
+                                <i class="bi bi-person-circle me-2 text-primary"></i>
+                                <span>Jesús Gabriel Rodríguez Rubio</span>
+                            </div>
+                            <div class="small">
+                                <i class="bi bi-code-slash me-2 text-info"></i>
+                                <span>Ingeniería de Sistemas</span>
+                            </div>
+                            <div class="small">
+                                <i class="bi bi-mortarboard-fill me-2 text-warning"></i>
+                                <span>Universidad Simón Bolívar - Cúcuta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      <div class="footer-section text-center">
-        <h5 class="mb-3">MathGames©</h5>
-        <a href="/modulos_render/index"><img src="{{ url_for('static', filename='uploads/icon.png') }}" alt="icon" class="img-fluid" style="max-width:100px;"></a>
-      </div>
-    </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-brand">
+                        <h5 class="fw-bold mb-2">MathGames<span class="text-primary">©</span></h5>
+                        <a href="/" class="d-inline-block transition-hover">
+                            <img src="{{ url_for('static', filename='uploads/icon.png') }}" 
+                                 alt="MathGames Icon" 
+                                 class="img-fluid" 
+                                 style="max-width: 80px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">
+                        </a>
+                    </div>
+                </div>
 
-    <div class="text-center mt-4 border-top border-secondary pt-3">
-      <p class="mb-0">MathGames 2025 © | Todos los derechos reservados</p>
-    </div>
-  </footer>
+            </div>
+
+            <div class="text-center mt-5 pt-3 border-top border-secondary opacity-50">
+                <p class="x-small mb-0">&copy; 2026 MathGames | Plataforma Educativa de Ingeniería de Sistemas</p>
+            </div>
+        </div>
+    </footer>
 </div>

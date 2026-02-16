@@ -1,98 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inicio | MathGames</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/global/style_inicio.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/uploads/icon.png') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | MathGames</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style_inicio.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/uploads/icon.png') }}">
 </head>
 <body class="bg-dark-purple">
 
 {% include 'global_html/navbar.html' %}
 
-<div class="container mt-4">
-  <div class="blog-intro">
-    <h5>| Bienvenido a la página de Inicio |</h5>
-    <p id="infoInicioTexto">Guía rápida acerca de los minijuegos</p>
-  </div>
+<div class="container mt-5">
+    <div class="blog-intro shadow-lg">
+        <h5 class="fw-bold text-uppercase mb-2"><i class="bi bi-controller me-2"></i>Bienvenido a MathGames</h5>
+        <p id="infoInicioTexto" class="text-white-50 mb-0">Explora la lógica y las matemáticas a través de minijuegos interactivos</p>
+    </div>
 </div>
 
-<div class="container mt-4 mb-5 p-4 rounded bg-dark text-light border border-info">
-  <h2 class="text-info mb-3">🔢 Cómo jugar Sudoku?</h2>
-  <p class="lead">
-    El objetivo del Sudoku es completar la cuadrícula de 9x9 con números del 1 al 9. Para que la solución sea correcta, debes seguir tres reglas básicas de no repetición en la cuadrícula:
-  </p>
-  <ul class="list-group list-group-flush mb-3">
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <i class="bi bi-arrow-right-short text-info"></i> Regla de Fila: Cada fila horizontal debe contener los números del 1 al 9, sin que ninguno se repita.
-    </li>
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <i class="bi bi-arrow-down-short text-info"></i> Regla de Columna: Cada columna vertical debe contener los números del 1 al 9, sin que ninguno se repita.
-    </li>
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <i class="bi bi-grid-3x3-gap-fill text-info"></i> Regla de Bloque (3x3): Cada uno de los nueve bloques de 3x3 que componen la cuadrícula principal debe contener los números del 1 al 9, sin que ninguno se repita.
-    </li>
-  </ul>
-  <p class="mb-0 small text-muted">
-    El juego se resuelve puramente por lógica y deducción, ¡nunca adivinando!.
-  </p>
+<div class="container mb-5">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="blog-intro text-start p-4 border-info-subtle shadow">
+                <h2 class="text-info mb-4 d-flex align-items-center">
+                    <i class="bi bi-grid-3x3 me-3"></i> ¿Cómo jugar Sudoku?
+                </h2>
+                <p class="lead text-light opacity-90">
+                    El objetivo es completar la cuadrícula de 9x9 con números del 1 al 9 siguiendo tres reglas fundamentales de no repetición:
+                </p>
+                
+                
+
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-info"><i class="bi bi-arrows-expand me-2"></i>Regla de Fila</h6>
+                            <p class="small text-white-50">Cada fila horizontal debe contener los números del 1 al 9 sin duplicados.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-info"><i class="bi bi-arrows-vertical me-2"></i>Regla de Columna</h6>
+                            <p class="small text-white-50">Cada columna vertical debe contener los números del 1 al 9 sin duplicados.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-info"><i class="bi bi-grid-3x3-gap me-2"></i>Regla de Bloque</h6>
+                            <p class="small text-white-50">Cada subcuadrícula de 3x3 debe contener los números del 1 al 9 de forma única.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-3 x-small text-info opacity-50"><i class="bi bi-info-circle me-1"></i> El juego se resuelve puramente por lógica y deducción.</p>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="blog-intro text-start p-4 border-primary-subtle shadow">
+                <h2 class="text-primary mb-4 d-flex align-items-center">
+                    <i class="bi bi-share me-3"></i> Editor de Grafos Interactivo
+                </h2>
+                <p class="lead text-light opacity-90">
+                    Un grafo modela relaciones entre objetos mediante <b>Vértices</b> (puntos) y <b>Aristas</b> (conexiones).
+                </p>
+
+                
+
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-primary"><i class="bi bi-tools me-2"></i>Construcción</h6>
+                            <ul class="x-small text-white-50 ps-3">
+                                <li>Agregar puntos en el lienzo</li>
+                                <li>Crear aristas entre nodos</li>
+                                <li>Arrastrar y reposicionar</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-info"><i class="bi bi-palette2 me-2"></i>Coloración</h6>
+                            <ul class="x-small text-white-50 ps-3">
+                                <li>Asignar colores manuales</li>
+                                <li>Algoritmo Greedy automático</li>
+                                <li>Verificar conflictos (en rojo)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-warning"><i class="bi bi-search me-2"></i>Rutas BFS</h6>
+                            <ul class="x-small text-white-50 ps-3">
+                                <li>Selección inicio/destino</li>
+                                <li>Cálculo del camino más corto</li>
+                                <li>Visualización de ruta activa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="small-card h-100 p-3">
+                            <h6 class="text-success"><i class="bi bi-file-earmark-arrow-up me-2"></i>Persistencia</h6>
+                            <ul class="x-small text-white-50 ps-3">
+                                <li>Descarga en formato JSON</li>
+                                <li>Carga de proyectos guardados</li>
+                                <li>Métricas en tiempo real</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="container mt-4 mb-5 p-4 rounded bg-dark text-light border border-info">
-  <h2 class="text-info mb-3">🌐 Cómo usar Editor de Grafos Interactivo?</h2>
-  <p class="lead">
-    Un grafo es una estructura matemática que modela pares de objetos donde algunos pares están relacionados. Se compone de 'Puntos' (vértices) y 'Conexiones' (aristas) que los unen. 
-  </p>
-  <p class="lead">
-    Utilice esta herramienta interactiva para construir, manipular y analizar propiedades clave de cualquier grafo que diseñe.
-  </p>
-  
-  <h4 class="text-white mt-4 mb-3"><i class="bi bi-gear-wide-connected"></i> Modos y Funcionalidades</h4>
-  
-  <ul class="list-group list-group-flush mb-4">
-    
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <h6 class="text-info mb-1"><i class="bi bi-plus-circle"></i> Construcción</h6>
-      <ul class="small ps-3">
-        <li>Agregar Punto: Coloca un nuevo nodo en el centro del lienzo.</li>
-        <li>Conectar Puntos (Modo Arista): Active este modo para seleccionar dos puntos consecutivamente y crear una conexión entre ellos (arista).</li>
-        <li>Mover Puntos (Modo Arrastre): Permite hacer clic y arrastrar los puntos a nuevas posiciones dentro del lienzo.</li>
-      </ul>
-    </li>
-
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <h6 class="text-info mb-1"><i class="bi bi-palette"></i> Coloración de Grafos</h6>
-      <ul class="small ps-3">
-        <li>Pintar Puntos (Modo Color): Al hacer clic en un punto, le asignará el color activo de la paleta.</li>
-        <li>Colorear Auto: Aplica un algoritmo de coloración greedy para intentar asignar colores automáticamente, minimizando conflictos.</li>
-        <li>Verificar: Revisa todas las conexiones. Si dos puntos unidos por una arista tienen el mismo color, la arista se resaltará en rojo, indicando un error en la 'Coloración Proper' del grafo.</li>
-      </ul>
-    </li>
-
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <h6 class="text-info mb-1"><i class="bi bi-arrow-left-right"></i> Búsqueda de Caminos (BFS)</h6>
-      <ul class="small ps-3">
-        <li>Buscar Camino: Active este modo y seleccione un punto de 'inicio' y luego un punto de 'destino'. El sistema utilizará el algoritmo de Búsqueda en Amplitud (BFS) para encontrar y resaltar el camino más corto entre ellos.</li>
-        <li>Limpiar: Borra el camino resaltado.</li>
-      </ul>
-    </li>
-
-    <li class="list-group-item bg-dark text-light border-secondary">
-      <h6 class="text-info mb-1"><i class="bi bi-speedometer2"></i> Estadísticas</h6>
-      <p class="small mb-0">El panel lateral le mostrará métricas en tiempo real, incluyendo el número total de Puntos, Conexiones y 'Grupos' (componentes conexas) que componen el grafo.</p>
-    </li>
-  </ul>
-  
-  <h4 class="text-white mt-4 mb-3"><i class="bi bi-file-earmark-code"></i> Gestión de Archivos</h4>
-  <i style="color: white;" class="mb-0 small">
-    Puede utilizar las opciones de 'Descargar' y 'Cargar' para guardar y restaurar el estado completo de su grafo en formato JSON, permitiendo reanudar o compartir su trabajo.
-  </i>
-</div>
-
-<div id="toastContainer" class="position-fixed p-3 top-0 end-0" style="z-index:2000;"></div>
+<div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
 
 {% include 'global_html/footer.html' %}
 

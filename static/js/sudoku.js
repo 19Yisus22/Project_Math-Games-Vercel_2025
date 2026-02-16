@@ -8,10 +8,13 @@ let rafId = null
 let currentDifficulty = 'easy'
 let score = 0
 let showCandidates = false
+
 const boardEl = document.getElementById('board')
 const timerText = document.getElementById('timerText')
 const scoreText = document.getElementById('scoreText')
 const toastContainer = document.getElementById('toastContainer')
+const toggleDark = document.getElementById('toggleDark')
+const sudokuCard = document.querySelector('.sudoku-card')
 
 function seedShuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -221,7 +224,7 @@ function fillOneCellHelp() {
     updateAllErrors()
     calculateScore()
     persistCurrent()
-    showToast('Pista aplicada correctamente', 'success')
+    showToast('Pista aplicada (valor correcto)', 'success')
     if (showCandidates) revealAllCandidates()
 }
 
@@ -243,10 +246,10 @@ function verify() {
     if (errors > 0) {
         showToast(`Hay ${errors} celdas incorrectas`, 'danger')
     } else if (empty > 0) {
-        showToast('Sudoku incompleto, pero vas bien', 'warning')
+        showToast('Sudoku incompleto', 'warning')
     } else {
         stopTimer()
-        showToast('¡Felicidades! Sudoku completado perfectamente', 'success')
+        showToast('¡Sudoku completado con éxito!', 'success')
     }
 }
 
@@ -280,6 +283,17 @@ function formatTime(t) {
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
+function applyDarkMode(isDark) {
+    if (isDark) {
+        sudokuCard.classList.add('dark')
+        document.body.classList.add('dark-mode')
+    } else {
+        sudokuCard.classList.remove('dark')
+        document.body.classList.remove('dark-mode')
+    }
+    localStorage.setItem('sudoku_theme', isDark ? 'dark' : 'light')
+}
+
 function persistCurrent() {
     const state = { puzzle, solution, elapsed, difficulty: currentDifficulty }
     localStorage.setItem('sudoku_current', JSON.stringify(state))
@@ -310,8 +324,15 @@ document.getElementById('btnShowCandidates').addEventListener('click', (e) => {
     else clearAllCandidates()
 })
 document.getElementById('btnHelpFill').addEventListener('click', fillOneCellHelp)
+toggleDark.addEventListener('change', (e) => applyDarkMode(e.target.checked))
 
 function init() {
+    const savedTheme = localStorage.getItem('sudoku_theme')
+    if (savedTheme === 'dark') {
+        toggleDark.checked = true
+        applyDarkMode(true)
+    }
+
     const saved = JSON.parse(localStorage.getItem('sudoku_current'))
     if (saved && saved.puzzle) {
         puzzle = saved.puzzle

@@ -7,9 +7,8 @@ from flask import Flask, request, jsonify, render_template
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
-DATA_DIR = os.path.join(STATIC_DIR, "data")
 
-os.makedirs(DATA_DIR, exist_ok=True)
+DATA_DIR = "/tmp"
 
 app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
@@ -33,7 +32,7 @@ def guardar_grafo():
         with open(ruta_archivo, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
             
-        return jsonify({"status": "success", "message": "Grafo guardado correctamente"})
+        return jsonify({"status": "success", "message": "Guardado en temporal"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
@@ -42,7 +41,7 @@ def cargar_grafo(nombre_archivo):
     try:
         ruta_archivo = os.path.join(DATA_DIR, nombre_archivo)
         if not os.path.exists(ruta_archivo):
-            return jsonify({"status": "error", "message": "Archivo no encontrado"}), 404
+            return jsonify({"status": "error", "message": "No encontrado"}), 404
             
         with open(ruta_archivo, "r", encoding="utf-8") as f:
             data = json.load(f)

@@ -47,7 +47,9 @@ function resetModes(except) {
 
 function updateUI() {
     Object.keys(buttons).forEach(key => {
-        buttons[key].classList.toggle('active', state[key + 'Mode']);
+        if (buttons[key]) {
+            buttons[key].classList.toggle('active', state[key + 'Mode']);
+        }
     });
     setStatus();
     render();
@@ -111,8 +113,9 @@ function render() {
         let isHighlighted = false;
         if (state.selectedPath.length > 1) {
             for (let i = 0; i < state.selectedPath.length - 1; i++) {
-                if ((state.selectedPath[i] === u.id && state.selectedPath[i+1] === v.id) ||
-                    (state.selectedPath[i] === v.id && state.selectedPath[i+1] === u.id)) {
+                const p1 = state.selectedPath[i];
+                const p2 = state.selectedPath[i+1];
+                if ((p1 === u.id && p2 === v.id) || (p1 === v.id && p2 === u.id)) {
                     isHighlighted = true; break;
                 }
             }
@@ -124,13 +127,14 @@ function render() {
         line.setAttribute('stroke', isHighlighted ? '#FBBF24' : (u.color && v.color && u.color === v.color ? '#EF4444' : '#4B5563'));
         line.setAttribute('stroke-width', isHighlighted ? 6 : 3);
         line.setAttribute('stroke-linecap', 'round');
-        line.style.transition = "all 0.2s ease";
+        line.style.transition = "stroke 0.2s, stroke-width 0.2s";
         svg.appendChild(line);
     });
 
     state.nodes.forEach(n => {
         const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         g.setAttribute('transform', `translate(${n.x},${n.y})`);
+        g.setAttribute('class', 'node-group');
         g.style.cursor = state.dragMode ? 'move' : 'pointer';
 
         const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -143,10 +147,7 @@ function render() {
         const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         t.setAttribute('y', 5);
         t.setAttribute('text-anchor', 'middle');
-        t.setAttribute('fill', '#FFFFFF');
-        t.setAttribute('font-size', '12px');
-        t.setAttribute('font-weight', 'bold');
-        t.style.userSelect = 'none';
+        t.setAttribute('class', 'node-label');
         t.style.pointerEvents = 'none';
         t.textContent = n.id;
 
@@ -184,15 +185,19 @@ function onNodeClick(node) {
         return;
     }
     if (state.pathMode) {
-        if (state.selectedPath.length >= 2) state.selectedPath = [];
-        state.selectedPath.push(node.id);
+        if (state.selectedPath.length >= 2 || (state.selectedPath.length === 1 && state.selectedPath[0] === node.id)) {
+            state.selectedPath = [node.id];
+        } else {
+            state.selectedPath.push(node.id);
+        }
+        
         if (state.selectedPath.length === 2) {
             const path = bfsPath(state.selectedPath[0], state.selectedPath[1]);
             if (path) {
                 state.selectedPath = path;
-                showToast('Ruta optimizada encontrada', 'success');
+                showToast('Ruta encontrada', 'success');
             } else {
-                showToast('No hay conexión disponible', 'warning');
+                showToast('No hay conexión', 'warning');
                 state.selectedPath = [];
             }
         }
@@ -273,7 +278,12 @@ buttons.path.onclick = () => { resetModes('pathMode'); state.pathMode = !state.p
 document.getElementById('addNodeBtn').onclick = () => addNodeAt(svg.clientWidth / 2, svg.clientHeight / 2);
 document.getElementById('clearBtn').onclick = () => { if(confirm('¿Limpiar todo?')) { state.nodes=[]; state.edges=[]; state.nextNodeId=1; render(); } };
 
-svg.onclick = (e) => { if(e.target === svg) { addNodeAt(e.offsetX, e.offsetY); } };
+svg.onclick = (e) => { 
+    if(e.target === svg) { 
+        const rect = svg.getBoundingClientRect();
+        addNodeAt(e.clientX - rect.left, e.clientY - rect.top); 
+    } 
+};
 
 render();
 setStatus();

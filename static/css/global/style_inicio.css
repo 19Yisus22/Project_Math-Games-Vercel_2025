@@ -1,49 +1,94 @@
 .bg-dark-purple {
-    background: linear-gradient(135deg, #3e226f, #5a2ea6);
+    background: linear-gradient(135deg, #3e226f 0%, #5a2ea6 100%);
     min-height: 100vh;
-    color: #fff;
+    color: #ffffff;
+    padding-bottom: 2rem;
 }
 
 .carousel-img {
-    max-height: 250px;
+    max-height: 280px;
     width: auto;
     display: block;
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.carousel-img:hover {
+    transform: scale(1.02);
 }
 
 .carousel-caption-below {
-    background-color: rgba(28,28,28,0.85);
-    color: #fff;
-    padding: 0.5rem;
-    margin-top: 0.25rem;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(8px);
+    color: #f8fafc;
+    padding: 1rem;
+    margin-top: 0.75rem;
     text-align: center;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.small-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.small-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .small-card .card-body {
-    padding: 0.5rem;
+    padding: 0.75rem;
 }
 
 .small-card .card-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
 }
 
 .small-card .card-text {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    color: #e2e8f0;
+    line-height: 1.4;
 }
 
 .btn-gradient.btn-sm {
-    padding: 0.3rem;
-    font-size: 0.75rem;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border: none;
+    color: white;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn-gradient.btn-sm:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
 }
 
 .blog-intro {
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: #fff;
-    background-color: rgba(28,28,28,0.8);
-    padding: 1rem;
-    border-radius: 12px;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
